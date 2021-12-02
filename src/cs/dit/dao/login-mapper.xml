@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 매퍼파일에 sql문 등록하 -->
+
+<mapper namespace="cs.dit.dao"> <!-- 네임스패이스 :맴퍼들을 구별하기 위한 것 -->
+	<resultMap id="loginResult" type="login">	<!-- 데이터를 담은 객체 -->
+		<result property="id" column = "id"/>
+		<result property="pwd" column = "pwd"/>
+		<result property="name" column = "name"/>
+	</resultMap>
+	
+	<!-- CRUD -->
+	<select id="selectOne" resultType = "login">
+		select * from login where id=#{id}
+	</select>
+	
+	<select id="selectAll" resultType = "login">
+		select * from login order by id
+	</select>
+	
+	<insert id="insert" parameterType ="login">
+		insert into login(id, pwd, name) values(#{id}, #{pwd}, #{name})
+	</insert>
+	
+	<update id ="update" parameterType="login">
+		update login set name=#{name}, pwd=#{pwd} where id=#{id}
+	</update>
+	
+	<delete id = "delete" parameterType="String">
+		delete from login where id = #{id}
+	</delete>
+	
+</mapper>	
+
